@@ -1,0 +1,19 @@
+ [0.460224][INFO][[LOGGER]]Logger init complete! Running BB2D V0.1
+[0.460971][INFO][[GameContext]]Beginning init...
+[0.461442][INFO][[AssetManager]]Beginning AssetManager initalisation
+[0.46408][INFO][[AssetManager]]Starting LoadMusic Thread
+[0.463909][INFO][[AssetManager]]Starting LoadTexture Thread
+[0.464833][INFO][[AssetManager]]LoadMusic complete.
+[0.46398][INFO][[AssetManager]]Starting LoadFonts Thread
+[0.464024][INFO][[AssetManager]]Starting LoadSound Thread
+[0.466166][INFO][[AssetManager]]LoadFont complete.
+[0.466211][INFO][[AssetManager]]LoadSound complete.
+[0.467279][INFO][[AssetManager]]Loaded <desert_tile tex> from res/tex/planes/deserttile.png
+[0.471161][INFO][[AssetManager]]Loaded <water tex> from res/tex/planes/water.png
+[0.471807][INFO][[AssetManager]]LoadTexture complete.
+[0.4735][INFO][[GameContext]]GLOBAL ASSET MANAGER INIT COMPLETE
+[0.474134][INFO][[SceneManager]]Initalising SceneManager...
+[0.474618][INFO][[SceneManager]]Initalisation complete.
+[0.475121][INFO][[GameContext]]GLOBAL SCENE MANAGER INIT COMPLETE
+[0.475564][INFO][[SceneManager]]Moving Scene! CURRENT: -1 & NEXT: 0
+[0.476382][INFO][[SceneManager]]Move complete successfully.

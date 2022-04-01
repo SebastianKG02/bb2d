@@ -1,0 +1,6 @@
+ [0.14603][INFO][[LOGGER]]Logger init complete! Running BB2D V0.1
+[0.14679][INFO][[GameContext]]Beginning init...
+[0.147402][INFO][[AssetManager]]Beginning AssetManager initalisation
+[0.149058][!!ERR!!][[AssetManager]]ASSETMANAGER ASSET.JSON VERSION MISMATCH!
+[0.149602][INFO][[AssetManager]]Current version: 0.1
+[0.150087][INFO][[AssetManager]]Target version: 0.1

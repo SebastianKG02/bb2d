@@ -1,0 +1,14 @@
+{
+    "bb2d": {
+        "type": "NONE",
+        "version": {
+            "major": 0,
+            "minor": 1
+        }
+    },
+	"data": {
+		"list": [ "desert_tile", "water" ],
+		"desert_tile": "res/tex/planes/deserttile.png",
+		"water": "res/tex/planes/water.png"
+	}
+}

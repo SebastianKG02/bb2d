@@ -1,0 +1,6 @@
+ [0.311691][INFO][[LOGGER]]Logger init complete! Running BB2D V0.1
+[0.312419][INFO][[GameContext]]Beginning init...
+[0.313119][INFO][[AssetManager]]Beginning AssetManager initalisation
+[0.328409][INFO][[AssetManager]]Beginning AssetManager initalisation
+[0.336872][INFO][[GameContext]]GLOBAL ASSET MANAGER INIT COMPLETE
+[0.33765][INFO][[GameContext]]GLOBAL SCENE MANAGER INIT COMPLETE
