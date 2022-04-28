@@ -11,6 +11,14 @@ namespace bb2d{
 
     namespace ui {
 
+        struct UIButtonConfig 
+        {
+            float pos[2];
+            float scale[2];
+            std::string tex;
+            AssetManager* am;
+        };
+
         /*
         * A class describing a button with four configurable states
         */

@@ -12,6 +12,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio/Sound.hpp>
 #include "UIElement.h"
+#include "Animation.h"
 
 namespace bb2d {
 	/*
@@ -20,7 +21,7 @@ namespace bb2d {
 	class Scene
 	{
 	public:
-		Scene(int id, std::string name, GameSettings* settings);
+		Scene(int id, std::string name, GameSettings* settings, debug::Logger* log);
 		Scene();  
 		virtual void init();
 		virtual void cleanup();
@@ -41,7 +42,9 @@ namespace bb2d {
 		std::vector<sf::Text*> text;
 		std::vector<ui::UIElement*> ui;
 		std::vector<sf::Shape*> shapes;
+		std::vector<core::Animation*> anims;
 		GameSettings* _settings;
+		debug::Logger* logger;
 		AssetManager* ref_m_asset;
 		int sceneID;
 		bool active = false;

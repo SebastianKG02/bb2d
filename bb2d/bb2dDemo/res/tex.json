@@ -3,12 +3,19 @@
         "type": "NONE",
         "version": {
             "major": 0,
-            "minor": 1
+            "minor": 2
         }
     },
-	"data": {
-		"list": [ "desert_tile", "water" ],
-		"desert_tile": "res/tex/planes/deserttile.png",
-		"water": "res/tex/planes/water.png"
-	}
+    "data": {
+        "ammo-depot-strip": "res/tex/planes/ammo-depot-strip.png",
+        "desert_tile": "res/tex/planes/deserttile.png",
+        "list": [
+            "desert_tile",
+            "water",
+            "ammo-depot-strip",
+            "spr_tower_strip8"
+        ],
+        "spr_tower_strip8": "res/tex/planes/spr_tower_strip8.png",
+        "water": "res/tex/planes/water.png"
+    }
 }

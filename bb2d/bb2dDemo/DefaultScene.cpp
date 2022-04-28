@@ -13,6 +13,14 @@ void DefaultScene::init() {
 	int sprX = ref_m_asset->getTexture("desert_tile")->getSize().x;
 	int sprY = ref_m_asset->getTexture("desert_tile")->getSize().y;
 
+	anims.push_back(new bb2d::core::Animation(ref_m_asset->getSpriteSheet("ammo-strip"), new sf::Sprite(), 0.5f));
+	
+	anims[0]->getSprite()->setPosition(300, 300);
+
+	anims.push_back(new bb2d::core::Animation(ref_m_asset->getSpriteSheet("tower-spin"), new sf::Sprite(), 1.0f));
+	anims[1]->getSprite()->setScale(2.0f, 2.0f);
+	anims[1]->getSprite()->setPosition(350, 600);
+
 	int _last = 0;
 	for (int y = 0; y < resY / sprY; y++) {
 		
@@ -30,7 +38,8 @@ void DefaultScene::init() {
 }
 
 void DefaultScene::update(sf::RenderWindow* w) {
-
+	anims[0]->update();
+	anims[1]->update();
 }
 
 void DefaultScene::input(sf::Event* e) {

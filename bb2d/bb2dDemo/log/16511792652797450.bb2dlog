@@ -1,0 +1,36 @@
+ [0.28031][INFO][LOGGER]Logger init complete! Running BB2D V0.2
+[0.281008][INFO][GameContext]Beginning init...
+[0.281668][INFO][AssetManager]Beginning AssetManager initalisation
+[0.284496][INFO][AssetManager]Starting LoadTexture Thread
+[0.284646][INFO][AssetManager]Starting LoadSound Thread
+[0.284604][INFO][AssetManager]Starting LoadFonts Thread
+[0.285237][INFO][AssetManager]Now loading <tex> from res\tex.json
+[0.285528][INFO][AssetManager]Now loading <sound> from res\sound.json
+[0.28456][INFO][AssetManager]Starting LoadMusic Thread
+[0.285802][INFO][AssetManager]Now loading <font> from res\font.json
+[0.286493][INFO][AssetManager]LoadSound complete.
+[0.286795][INFO][AssetManager]Now loading <music> from res\music.json
+[0.287235][INFO][AssetManager]LoadFont complete.
+[0.288241][INFO][AssetManager]Loaded <desert_tile tex> from res/tex/planes/deserttile.png
+[0.288158][INFO][AssetManager]LoadMusic complete.
+[0.292323][INFO][AssetManager]Loaded <water tex> from res/tex/planes/water.png
+[0.293493][INFO][AssetManager]Loaded <ammo-depot-strip tex> from res/tex/planes/ammo-depot-strip.png
+[0.295268][INFO][AssetManager]LoadTexture complete.
+[0.296487][INFO][AssetManager]First phase init complete, begin phase two...
+[0.297733][INFO][AssetManager]Starting LoadAnimation Thread
+[0.298269][INFO][AssetManager]Now loading <anim> from res\anim.json
+[0.298824][INFO][ANIM/ammo-strip]Begin loading animation <ammo-strip> from @res/spritesheet/ammo-strip.json
+[0.299478][INFO][AssetManager]Loading frame 0 for <ammo-strip>
+[0.301359][INFO][AssetManager]Loading frame 1 for <ammo-strip>
+[0.302999][INFO][AssetManager]Loading frame 2 for <ammo-strip>
+[0.304475][INFO][AssetManager]Loading frame 3 for <ammo-strip>
+[0.305837][INFO][AssetManager]Loading frame 4 for <ammo-strip>
+[0.307424][INFO][AssetManager]Loading frame 5 for <ammo-strip>
+[0.309068][INFO][AssetManager]Loaded <ammo-strip anim> from res/spritesheet/ammo-strip.json
+[0.311175][INFO][AssetManager]LoadAnimation complete.
+[0.31335][INFO][GameContext]GLOBAL ASSET MANAGER INIT COMPLETE
+[0.313885][INFO][SceneManager]Initalising SceneManager...
+[0.31437][INFO][SceneManager]Initalisation complete.
+[0.31491][INFO][GameContext]GLOBAL SCENE MANAGER INIT COMPLETE
+[0.315554][INFO][SceneManager]Moving Scene! CURRENT: -1 & NEXT: 0
+[0.316605][INFO][SceneManager]Move complete successfully.

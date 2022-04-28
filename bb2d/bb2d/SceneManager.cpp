@@ -10,7 +10,10 @@ SCENE DEFINITION
 */
 
 //Default constructor for all scenes 
-Scene::Scene(int id, std::string name, GameSettings* settings) {
+Scene::Scene(int id, std::string name, GameSettings* settings, debug::Logger* log) {
+	logger = log;
+	logger->registerClass(this, name);
+	logger->info(this, "Initalising scene...");
 	this->sceneID = id;
 	this->name = name;
 	this->active = false;
@@ -18,6 +21,8 @@ Scene::Scene(int id, std::string name, GameSettings* settings) {
 	sounds = std::vector<sf::Sound*>();
 	text = std::vector<sf::Text*>();
 	ui = std::vector<UIElement*>();
+	anims = std::vector<core::Animation*>();
+	logger->info(this, "Complete");
 	_settings = settings;
 }
 
@@ -44,11 +49,6 @@ std::string Scene::getFriendlyName() {
 
 //Simple cleanup method (deletes all maps, clears both ID vars)
 void Scene::cleanup() {
-	sprites.clear();
-	text.clear();
-	sounds.clear();
-	ui.clear();
-
 	for (auto& sprite : sprites) {
 		delete sprite;
 	}
@@ -59,6 +59,10 @@ void Scene::cleanup() {
 
 	for (auto& sound : sounds) {
 		delete sound;
+	}
+
+	for (auto& anim : anims) {
+		delete anim;
 	}
 
 	for (auto& ui_e : ui) {
@@ -135,6 +139,11 @@ void Scene::draw(sf::RenderWindow* w) {
 		rect.setSize(sf::Vector2f(textm->getGlobalBounds().width, textm->getGlobalBounds().height));
 		w->draw(rect);
 #endif
+	}
+
+	//Draw animations
+	for (auto anim : anims) {
+		w->draw(*anim->draw(w));
 	}
 
 	//Draw any primitive shapes
@@ -230,7 +239,6 @@ void SceneManager::next() {
 
 	prevScene = currScene;
 	currScene = nextScene;
-
 
 	for (;;) {
 		if (prevScene > -1 && getScene(prevScene)->isActive() == false) {

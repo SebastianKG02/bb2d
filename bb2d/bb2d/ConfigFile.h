@@ -6,6 +6,9 @@
 
 #ifndef BB2D_CONFIG_FILE_H
 #define BB2D_CONFIG_FILE_H
+#ifndef DEBUG_ENABLED
+#define DEBUG_ENABLED
+#endif
 
 namespace bb2d {
 

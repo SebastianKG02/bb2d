@@ -13,6 +13,7 @@
 #include "ConfigFile.h"
 #include "JSONFile.h"
 #include "Logger.h"
+#include "Spritesheet.h"
 
 namespace bb2d {      
 
@@ -38,6 +39,8 @@ namespace bb2d {
 		sf::Font* getFont(std::string fontName);
 		//Gets a music file that has been identified on the disk
 		sf::Music* getMusic(std::string musicName);
+		//Gets a spritesheet file that contains loaded animations
+		core::Spritesheet* getSpriteSheet(std::string sheetName);
 		//Check internal init completion flag
 		bool isInitComplete();
 		//Check internal cleanup completion flag
@@ -48,6 +51,7 @@ namespace bb2d {
 		void loadFonts();
 		void loadMusic();
 		void loadSounds();
+		void loadAnimations();
 	private:
 		//Store of JSON files loaded during intialisation - is cleared when initialisation is complete
 		std::map<std::string, bb2d::utils::JSONFile*> assets;
@@ -59,6 +63,8 @@ namespace bb2d {
 		std::map<std::string, sf::Font*> fonts;
 		//Store of loaded music
 		std::map<std::string, sf::Music*> music;
+		//Store of loaded Spritesheets
+		std::map<std::string, core::Spritesheet*> anim;
 		//Initalisation flag
 		bool hasFinishedInit = false;
 		//Cleanup flag

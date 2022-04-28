@@ -43,6 +43,9 @@
     <Filter Include="Source Files\Debug">
       <UniqueIdentifier>{34df80ab-7d6e-4482-8093-18b685eebd9d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Core\Entity">
+      <UniqueIdentifier>{4482ccc1-ed26-45fb-a86c-261fab091218}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Utils.cpp">
@@ -75,11 +78,8 @@
     <ClCompile Include="JSONFile.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Logger.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="UITextButton.cpp">
+      <Filter>Source Files\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -119,13 +119,19 @@
     <ClInclude Include="JSONFile.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Version.h">
+      <Filter>Header Files\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="UITextButton.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Spritesheet.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="Logger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Version.h">
       <Filter>Header Files\Debug</Filter>
     </ClInclude>
   </ItemGroup>

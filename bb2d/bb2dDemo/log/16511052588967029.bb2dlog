@@ -1,0 +1,19 @@
+ [0.897247][INFO][LOGGER]Logger init complete! Running BB2D V0.2
+[0.897858][INFO][GameContext]Beginning init...
+[0.89836][INFO][AssetManager]Beginning AssetManager initalisation
+[0.900994][INFO][AssetManager]Starting LoadTexture Thread
+[0.90113][INFO][AssetManager]Starting LoadMusic Thread
+[0.90105][INFO][AssetManager]Starting LoadSound Thread
+[0.901086][INFO][AssetManager]Starting LoadFonts Thread
+[0.902679][INFO][AssetManager]Now loading <font> from res\font.json
+[0.902033][INFO][AssetManager]Now loading <music> from res\music.json
+[0.90356][INFO][AssetManager]LoadFont complete.
+[0.903887][INFO][AssetManager]LoadMusic complete.
+[0.903821][INFO][AssetManager]LoadSound complete.
+[0.906005][INFO][AssetManager]Loaded <desert_tile tex> from res/tex/planes/deserttile.png
+[0.909569][INFO][AssetManager]Loaded <water tex> from res/tex/planes/water.png
+[0.910225][INFO][AssetManager]Loaded <ammo-depot-strip tex> from res/tex/planes/ammo-depot-strip.png
+[0.910666][INFO][AssetManager]LoadTexture complete.
+[0.911687][INFO][AssetManager]First phase init complete, begin phase two...
+[0.912835][INFO][AssetManager]Starting LoadAnimation Thread
+[0.913292][INFO][AssetManager]Now loading <anim> from res\anim.json

@@ -62,14 +62,7 @@ namespace bb2d {
 
 			//Default destructor
 			~Logger() {
-				//Loop through contents of class and delete pointers & erase other data where possible
-				/*
-				do {
-					map->at(map->size() - 1)->second->clear();
-					delete map->at(map->size() - 1);
-					map->erase(map->begin() + (map->size() - 1), map->begin() + (map->size() - 1));
-				} while (map->size() > 0);
-				*/
+				//Delete all resources used by Logger
 				delete map;
 				ids->clear();
 				delete ids;
@@ -83,7 +76,7 @@ namespace bb2d {
 					map->push_back(new std::pair<void*, std::string*>);
 					//Set pair attributes
 					map->at(map->size() - 1)->first = object;
-					map->at(map->size() - 1)->second = new std::string(tagStart + tag + tagEnd);
+					map->at(map->size() - 1)->second = new std::string(tag);
 					//Get id and register against pointer
 					ids->insert({ object, map->size() - 1 });
 					//Return success

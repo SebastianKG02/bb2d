@@ -45,6 +45,8 @@ namespace bb2d {
 		class JSONFile
 		{
 		public:
+			//Emptu constructor
+			JSONFile();
 			//Create data storage and load JSON file from path
 			JSONFile(std::string path);
 			//Save current JSON data in <path>

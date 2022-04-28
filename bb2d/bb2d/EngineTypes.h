@@ -11,7 +11,7 @@
 namespace bb2d {
 
 	//Simple enum for holding engine status
-	enum BB2DSTATUS
+	enum class BB2DSTATUS
 	{
 		/*
 		Error type 1 (usually also followed by a more specfific number in logging)
@@ -54,7 +54,7 @@ namespace bb2d {
 	//A pair of configurable boolean values, used as <default value, user current value> in terms of held data
 	typedef std::pair<bool, bool> bflag;
 	//A pair of configurable integer values, used as <default value, user current value> in terms of held data
-	typedef std::pair<uint16_t, uint16_t> iflag;
+	typedef std::pair<int, int> iflag;
 	//A pair of configurable SFML Keyboard Key values, used as <default value, user current value> in terms of held data
 	typedef std::pair<sf::Keyboard::Key, sf::Keyboard::Key> kflag;
 	//A pair of configurable Strings, used as <default value, user current value in terms of held data
@@ -79,7 +79,6 @@ namespace bb2d {
 		BOOL,
 		STRING
 	};
-
 
 }
 

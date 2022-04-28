@@ -1,0 +1,7 @@
+ [0.579069][INFO][LOGGER]Logger init complete! Running BB2D V0.2
+[0.580074][INFO][GameContext]Beginning init...
+[0.58073][INFO][AssetManager]Beginning AssetManager initalisation
+[0.58407][INFO][AssetManager]Starting LoadFonts Thread
+[0.583882][INFO][AssetManager]Starting LoadTexture Thread
+[0.583992][INFO][AssetManager]Starting LoadSound Thread
+[0.584156][INFO][AssetManager]Starting LoadMusic Thread

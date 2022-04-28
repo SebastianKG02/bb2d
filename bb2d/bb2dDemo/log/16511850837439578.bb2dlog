@@ -1,0 +1,48 @@
+ [0.744552][INFO][LOGGER]Logger init complete! Running BB2D V0.2
+[0.74542][INFO][GameContext]Beginning init...
+[0.74605][INFO][AssetManager]Beginning AssetManager initalisation
+[0.748919][INFO][AssetManager]Starting LoadMusic Thread
+[0.748868][INFO][AssetManager]Starting LoadFonts Thread
+[0.749499][INFO][AssetManager]Now loading <music> from res\music.json
+[0.748754][INFO][AssetManager]Starting LoadSound Thread
+[0.750412][INFO][AssetManager]Now loading <sound> from res\sound.json
+[0.748792][INFO][AssetManager]Starting LoadTexture Thread
+[0.75034][INFO][AssetManager]LoadMusic complete.
+[0.749937][INFO][AssetManager]Now loading <font> from res\font.json
+[0.751076][INFO][AssetManager]Now loading <tex> from res\tex.json
+[0.75114][INFO][AssetManager]LoadSound complete.
+[0.752171][INFO][AssetManager]LoadFont complete.
+[0.754021][INFO][AssetManager]Loaded <desert_tile tex> from res/tex/planes/deserttile.png
+[0.757214][INFO][AssetManager]Loaded <water tex> from res/tex/planes/water.png
+[0.758566][INFO][AssetManager]Loaded <ammo-depot-strip tex> from res/tex/planes/ammo-depot-strip.png
+[0.759471][INFO][AssetManager]LoadTexture complete.
+[0.760509][INFO][AssetManager]First phase init complete, begin phase two...
+[0.761661][INFO][AssetManager]Starting LoadAnimation Thread
+[0.762317][INFO][AssetManager]Now loading <anim> from res\anim.json
+[0.762991][INFO][ANIM/ammo-strip]Begin loading animation <ammo-strip> from @res/spritesheet/ammo-strip.json
+[0.763618][INFO][AssetManager]Loading frame 0 for <ammo-strip>
+[0.765017][INFO][ANIM/ammo-strip]Trying to load texture <0,0>... pos:0
+[0.765522][INFO][AssetManager]        frame 0 for <ammo-strip>: 1
+[0.766016][INFO][AssetManager]Loading frame 1 for <ammo-strip>
+[0.767192][INFO][ANIM/ammo-strip]Trying to load texture <1,0>... pos:1
+[0.767729][INFO][AssetManager]        frame 1 for <ammo-strip>: 1
+[0.768348][INFO][AssetManager]Loading frame 2 for <ammo-strip>
+[0.76948][INFO][ANIM/ammo-strip]Trying to load texture <2,0>... pos:2
+[0.769954][INFO][AssetManager]        frame 2 for <ammo-strip>: 1
+[0.770403][INFO][AssetManager]Loading frame 3 for <ammo-strip>
+[0.771607][INFO][ANIM/ammo-strip]Trying to load texture <3,0>... pos:3
+[0.772127][INFO][AssetManager]        frame 3 for <ammo-strip>: 1
+[0.772603][INFO][AssetManager]Loading frame 4 for <ammo-strip>
+[0.773737][INFO][ANIM/ammo-strip]Trying to load texture <4,0>... pos:4
+[0.776136][INFO][AssetManager]        frame 4 for <ammo-strip>: 1
+[0.77696][INFO][AssetManager]Loading frame 5 for <ammo-strip>
+[0.778434][INFO][ANIM/ammo-strip]Trying to load texture <5,0>... pos:5
+[0.779041][INFO][AssetManager]        frame 5 for <ammo-strip>: 1
+[0.77961][INFO][AssetManager]Loaded <ammo-strip anim> from res/spritesheet/ammo-strip.json
+[0.780143][INFO][AssetManager]LoadAnimation complete.
+[0.782156][INFO][GameContext]GLOBAL ASSET MANAGER INIT COMPLETE
+[0.78277][INFO][SceneManager]Initalising SceneManager...
+[0.78333][INFO][SceneManager]Initalisation complete.
+[0.783908][INFO][GameContext]GLOBAL SCENE MANAGER INIT COMPLETE
+[0.784574][INFO][SceneManager]Moving Scene! CURRENT: -1 & NEXT: 0
+[0.785533][INFO][SceneManager]Move complete successfully.

@@ -6,7 +6,7 @@
 namespace bb2d {
 	namespace debug {
 #ifndef BB2D_VERSION
-#define BB2D_VERSION std::make_pair(0, 1)
+#define BB2D_VERSION std::make_pair(0, 2)
 #endif
 	}
 }

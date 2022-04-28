@@ -1,6 +1,7 @@
 #include "ConfigFile.h"
 #include "Utils.h"
 #include "Utils.cpp"
+
 //Preferred constructor, using file to load data
 ConfigFile::ConfigFile(std::string pathn, std::string delim) {
 	Utils::loadConfigFile(pathn.c_str(), &data, delim);
@@ -108,18 +109,15 @@ void GConfigFile::loadFromFile(std::string path, GameSettings* target, std::stri
 	this->delim = delim;
 	//Temporary map used for loading values
 	std::map<std::string, std::string> tempMap;
-	//File to be opened
-	std::fstream file_s;
+	Utils::loadConfigFile(path, &tempMap);
 	gs = target;
-	//Try to open file
-	file_s.open(path);
 
 	//If file successfully opened, load data into tempMap and return to caller
-	if (file_s.is_open()) {
+	if (!tempMap.empty()) {
 		//Loop through each line and extract data
-		for (std::string line; std::getline(file_s, line); ) {
+		for (auto line: tempMap ) {
 			//First part of GConfig dataline should be [T:default] where T is SettingType char (k, i, b, s), default being replaced by the default value set 
-			sflag id_split = Utils::splitString(line, "]");
+			sflag id_split = Utils::splitString(line.first, "]");
 			//Get key and value (1 / 2)
 			sflag value_split = Utils::splitString(id_split.second, "=");
 			//Check if format is valid as per [T:default]
@@ -196,21 +194,16 @@ void GConfigFile::loadFromFile(std::string path, GameSettings* target, std::stri
 			}
 
 #ifdef DEBUG_ENABLED
-#if DEBUG_LEVEL >= DB_LEVEL_MINERR
 			//ONLY IF DEBUG IS ENABLED!!
 			//Detail everything loaded into the map
-			std::cout << "[DEBUG]Map loading K:" << fline.substr(start, split) << " V:" << fline.substr(split + 1, end) << std::endl;
-#endif
+			std::cout << "[DEBUG]Map loading K:" << id_split.first << " V:" << value_split.second << std::endl;
 #endif
 		}
-		file_s.close();
 	}
 	else {
 		//if file not loaded successfully, return blank map
 #ifdef DEBUG_ENABLED
-#if DEBUG_LEVEL >= DB_LEVEL_MINERR
-		std::cerr << "Could not open file @" << file << " please try again." << std::endl;
-#endif
+		std::cerr << "Could not open file @" << path << " please try again." << std::endl;
 #endif
 	}
 }

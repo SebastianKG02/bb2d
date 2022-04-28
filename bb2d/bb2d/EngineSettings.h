@@ -25,7 +25,7 @@ namespace bb2d
 				target->keyboardSettings->at(key)->second = bb2d::Utils::charToKey(val);
 				break;
 			case SettingType::INT:
-				target->integerSettings->insert({ key, new std::pair< uint16_t,uint16_t>() });
+				target->integerSettings->insert({ key, new std::pair<int, int>() });
 				target->integerSettings->at(key)->first = std::stoi(val);
 				target->integerSettings->at(key)->second = std::stoi(val);
 				break;

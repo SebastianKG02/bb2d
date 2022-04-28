@@ -3,10 +3,11 @@
         "type": "M_ASSET_MAIN",
         "version": {
             "major": 0,
-            "minor": 1
+            "minor": 2
         }
     },
     "data": {
+        "anim": "res\\anim.json",
         "font": "res\\font.json",
         "music": "res\\music.json",
         "sound": "res\\sound.json",

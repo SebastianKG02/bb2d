@@ -1,0 +1,53 @@
+ [0.789949][INFO][LOGGER]Logger init complete! Running BB2D V0.2
+[0.792614][INFO][GameContext]Beginning init...
+[0.793232][INFO][AssetManager]Beginning AssetManager initalisation
+[0.796234][INFO][AssetManager]Starting LoadTexture Thread
+[0.796283][INFO][AssetManager]Starting LoadSound Thread
+[0.796999][INFO][AssetManager]Now loading <tex> from res\tex.json
+[0.796398][INFO][AssetManager]Starting LoadFonts Thread
+[0.797267][INFO][AssetManager]Now loading <sound> from res\sound.json
+[0.798442][INFO][AssetManager]Now loading <music> from res\music.json
+[0.798823][INFO][AssetManager]Now loading <font> from res\font.json
+[0.799096][INFO][AssetManager]LoadSound complete.
+[0.799341][INFO][AssetManager]LoadMusic complete.
+[0.79977][INFO][AssetManager]LoadFont complete.
+[0.801616][INFO][AssetManager]Loaded <desert_tile tex> from res/tex/planes/deserttile.png
+[0.805091][INFO][AssetManager]Loaded <water tex> from res/tex/planes/water.png
+[0.805901][INFO][AssetManager]Loaded <ammo-depot-strip tex> from res/tex/planes/ammo-depot-strip.png
+[0.806392][INFO][AssetManager]LoadTexture complete.
+[0.807577][INFO][AssetManager]First phase init complete, begin phase two...
+[0.808815][INFO][AssetManager]Starting LoadAnimation Thread
+[0.809425][INFO][AssetManager]Now loading <anim> from res\anim.json
+[0.810016][INFO][ANIM/ammo-strip]Begin loading animation <ammo-strip> from @res/spritesheet/ammo-strip.json
+[0.810547][INFO][AssetManager]Loading frame 0 for <ammo-strip>
+[0.811816][INFO][ANIM/ammo-strip]Trying to load texture <0,0>... pos:0
+[0.813872][!!ERR!!][ANIM/ammo-strip]Can't set frame <0,0>: invalid map<K, T> key
+[0.814871][INFO][AssetManager]        frame 0 for <ammo-strip>: 0
+[0.815651][INFO][AssetManager]Loading frame 1 for <ammo-strip>
+[0.817054][INFO][ANIM/ammo-strip]Trying to load texture <1,0>... pos:1
+[0.818324][!!ERR!!][ANIM/ammo-strip]Can't set frame <1,0>: invalid map<K, T> key
+[0.818869][INFO][AssetManager]        frame 1 for <ammo-strip>: 0
+[0.819379][INFO][AssetManager]Loading frame 2 for <ammo-strip>
+[0.820629][INFO][ANIM/ammo-strip]Trying to load texture <2,0>... pos:2
+[0.821985][!!ERR!!][ANIM/ammo-strip]Can't set frame <2,0>: invalid map<K, T> key
+[0.822578][INFO][AssetManager]        frame 2 for <ammo-strip>: 0
+[0.823031][INFO][AssetManager]Loading frame 3 for <ammo-strip>
+[0.824226][INFO][ANIM/ammo-strip]Trying to load texture <3,0>... pos:3
+[0.825406][!!ERR!!][ANIM/ammo-strip]Can't set frame <3,0>: invalid map<K, T> key
+[0.825953][INFO][AssetManager]        frame 3 for <ammo-strip>: 0
+[0.826446][INFO][AssetManager]Loading frame 4 for <ammo-strip>
+[0.828075][INFO][ANIM/ammo-strip]Trying to load texture <4,0>... pos:4
+[0.831148][!!ERR!!][ANIM/ammo-strip]Can't set frame <4,0>: invalid map<K, T> key
+[0.831694][INFO][AssetManager]        frame 4 for <ammo-strip>: 0
+[0.832276][INFO][AssetManager]Loading frame 5 for <ammo-strip>
+[0.833571][INFO][ANIM/ammo-strip]Trying to load texture <5,0>... pos:5
+[0.834931][!!ERR!!][ANIM/ammo-strip]Can't set frame <5,0>: invalid map<K, T> key
+[0.835432][INFO][AssetManager]        frame 5 for <ammo-strip>: 0
+[0.836029][INFO][AssetManager]Loaded <ammo-strip anim> from res/spritesheet/ammo-strip.json
+[0.836523][INFO][AssetManager]LoadAnimation complete.
+[0.838352][INFO][GameContext]GLOBAL ASSET MANAGER INIT COMPLETE
+[0.838811][INFO][SceneManager]Initalising SceneManager...
+[0.839349][INFO][SceneManager]Initalisation complete.
+[0.839789][INFO][GameContext]GLOBAL SCENE MANAGER INIT COMPLETE
+[0.840461][INFO][SceneManager]Moving Scene! CURRENT: -1 & NEXT: 0
+[0.841418][INFO][SceneManager]Move complete successfully.

@@ -76,6 +76,27 @@ sf::Font* AssetManager::getFont(std::string fontName) {
 	}
 }
 
+//Method to get loaded font
+core::Spritesheet* AssetManager::getSpriteSheet(std::string sheetName) {
+	//This method should only run if AM has completed init AND cleanup is not started
+	if (isInitComplete() == true && isCleanupComplete() == false) {
+		try {
+			if (anim.at(sheetName) != nullptr) {
+				return anim.at(sheetName);
+			}
+			else {
+				return nullptr;
+			}
+		}
+		catch (std::exception e) {
+			return nullptr;
+		}
+	}
+	else {
+		return nullptr;
+	}
+}
+
 //Method to get loaded Music
 sf::Music* AssetManager::getMusic(std::string musicName) {
 	//This method should only run if AM has completed init AND cleanup is not started
@@ -113,9 +134,10 @@ void AssetManager::loadAssetJSON(const std::string& type) {
 	//Double check is valid asset
 	if ((*ptr)["bb2d"]["type"] == "M_ASSET_MAIN") {
 		//Check if resource manifest for textures has been found (create as typeName 
-		assets.insert({ type, new bb2d::utils::JSONFile((*ptr).at("data").at(type)) });
+		assets.insert({ type, new bb2d::utils::JSONFile((*ptr).at("data").at(type).get<std::string>()) });
 		//Check if file sucessfully opens as JSON file
-		if (assets[type]->loadFile((*ptr)["data"][type], true) == true) {
+		_logger->info(this, "Now loading <" + type + "> from " + (*ptr).at("data").at(type).get<std::string>());
+		if (assets[type]->loadFile((*ptr).at("data").at(type).get<std::string>(), true) == true) {
 			//Load relevant file and get JSON
 			auto ptr_data = assets[type]->getJSON();
 			//Loop through each entry in resource manifest
@@ -162,6 +184,26 @@ void AssetManager::loadAssetJSON(const std::string& type) {
 					if (fonts[idString]->loadFromFile(tempString) == false) {
 						fonts[idString] = nullptr;
 					}
+				case 'a':
+					anim.insert({ std::string(idString), new core::Spritesheet(idString, tempString, _logger) });
+					//Set parent texture
+					anim[idString]->setParentTexture(getTexture(anim[idString]->getParentTextureID()));
+					for (int y = 0; y < anim[idString]->getSheetHeight(); y++) {
+						for (int x = 0; x < anim[idString]->getSheetWidth(); x++) {
+							//Create ID for this frame <idString_01> e.t.c.
+							std::string frameID = std::string(idString + "_" + std::to_string(x + (y * anim[idString]->getSheetWidth())));
+							//Reserve space for it in the textures vector
+							tex.insert({ frameID, new sf::Texture() });
+							//Send debug message
+							_logger->info(this, "Loading frame " + std::to_string(x + (y * anim[idString]->getSheetWidth())) + " for <" + idString + ">");
+							//Actually load the texture from the parent image <idString>
+							tex[frameID]->loadFromFile(anim[idString]->getAbsolutePath(), sf::IntRect(anim[idString]->getSheetWidth() * x, anim[idString]->getSheetHeight() * y, anim[idString]->getFrameWidth(), anim[idString]->getFrameHeight()));
+							//anim[idString]->setFrame(x, y, tex[frameID]);
+							//Set actual animation frame to be created texture
+							_logger->info(this, "        frame " + std::to_string(x + (y * anim[idString]->getSheetWidth())) + " for <" + idString + ">: " + std::to_string(anim[idString]->setFrame(x, y, tex[frameID])));
+						}
+					}
+					//Insert spritesheet & attempt to load
 
 					break;
 				default:
@@ -202,6 +244,12 @@ void AssetManager::loadFonts() {
 	_logger->info(this, "LoadFont complete.");
 }
 
+void AssetManager::loadAnimations() {
+	_logger->info(this, "Starting LoadAnimation Thread");
+	loadAssetJSON("anim");
+	_logger->info(this, "LoadAnimation complete.");
+}
+
 //Initalise AssetManager, load all resources 
 void AssetManager::init() {
 	_logger->registerClass(this, "AssetManager");
@@ -217,6 +265,7 @@ void AssetManager::init() {
 	AssetManager::sound = std::map<std::string, sf::SoundBuffer*>();
 	AssetManager::fonts = std::map<std::string, sf::Font*>();
 	AssetManager::music = std::map<std::string, sf::Music*>();
+	AssetManager::anim = std::map<std::string, core::Spritesheet*>();
 	assets = std::map<std::string, bb2d::utils::JSONFile*>();
 	assets.insert({ "main", new bb2d::utils::JSONFile("asset.json") });
 
@@ -224,6 +273,7 @@ void AssetManager::init() {
 	auto ptr = assets["main"]->getJSON();
 
 	//If file version is set properly, populate file with default values
+	//Versions have to match EXACTLY!
 	if ((*ptr)["bb2d"]["version"]["major"].get<int>() == BB2D_VERSION.first
 		&& (*ptr)["bb2d"]["version"]["minor"].get<int>() == BB2D_VERSION.second) {
 		(*ptr)["bb2d"]["type"] = "M_ASSET_MAIN";
@@ -231,8 +281,10 @@ void AssetManager::init() {
 		(*ptr)["data"]["sound"] = "res\\sound.json";
 		(*ptr)["data"]["music"] = "res\\music.json";
 		(*ptr)["data"]["font"] = "res\\font.json";
+		(*ptr)["data"]["anim"] = "res\\anim.json";
 	}
 	else {
+		//If a version mismatch has been found (BB2D version > File version or vice versa)
 		_logger->error(this, "ASSETMANAGER ASSET.JSON VERSION MISMATCH!");
 		_logger->info(this, "Current version: " + std::to_string(BB2D_VERSION.first) + "." + std::to_string(BB2D_VERSION.second));
 		std::string _foundVersion = (*ptr)["bb2d"]["version"]["major"].dump(BB2D_JSON_OUTPUT_INDENT);
@@ -266,6 +318,20 @@ void AssetManager::init() {
 		}
 	} while (threadStatus.size() > 0);
 
+	//First phase loading complete
+	_logger->info(this, "First phase init complete, begin phase two...");
+	std::thread _animLoader(&AssetManager::loadAnimations, this);
+	_animLoader.join();
+
+	//Pause continuation of program logic until reading threads are finished
+	do {
+		//Check latest entry for completion
+		if (threadStatus[threadStatus.size() - 1] == 1) {
+			//If completed, erase this threadStatus
+			threadStatus.erase(threadStatus.begin() + (threadStatus.size() - 1));
+		}
+	} while (threadStatus.size() > 0);
+
 	assets["main"]->saveFile();
 	assets["main"]->reload();
 	//Set init to be complete after
@@ -280,9 +346,7 @@ void AssetManager::cleanup() {
 	//Only run this method if init is complete and cleanup has not ran
 	if (isInitComplete() == true && isCleanupComplete() == false) {
 		//Loop through texture map and delete all loaded textures
-		for (auto& res : tex) {
-			res.second->~Texture();
-		}
+		tex.clear();
 
 		//Loop through music map and delete all loaded music
 		for (auto& res : music) {
@@ -297,6 +361,11 @@ void AssetManager::cleanup() {
 		for (auto& res : sound) {
 			delete res.second;
 		}
+
+		for (auto& asset : assets) {
+			asset.second->saveFile();
+		}
+		assets.clear();
 
 		//Set cleanup flag
 		hasFinishedCleanup == true;

@@ -26,7 +26,7 @@ namespace bb2d {
 		*/
 		struct DebugSettings
 		{
-			bool DEBUG_ENABLED = false;
+			//bool DEBUG_ENABLED = false;
 			bool DEBUG_HITBOX_SHOW = false;
 			bool DEBUG_CONSOLE = true;
 			float DEBUG_HITBOX_LINE_THICKNESS = 1.0f;

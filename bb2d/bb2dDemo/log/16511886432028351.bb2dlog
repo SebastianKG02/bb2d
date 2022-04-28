@@ -1,0 +1,75 @@
+ [0.203495][INFO][LOGGER]Logger init complete! Running BB2D V0.2
+[0.204354][INFO][GameContext]Beginning init...
+[0.204926][INFO][AssetManager]Beginning AssetManager initalisation
+[0.208193][INFO][AssetManager]Starting LoadTexture Thread
+[0.208405][INFO][AssetManager]Starting LoadFonts Thread
+[0.208318][INFO][AssetManager]Starting LoadSound Thread
+[0.209435][INFO][AssetManager]Now loading <font> from res\font.json
+[0.208933][INFO][AssetManager]Now loading <tex> from res\tex.json
+[0.208492][INFO][AssetManager]Starting LoadMusic Thread
+[0.209604][INFO][AssetManager]Now loading <sound> from res\sound.json
+[0.210595][INFO][AssetManager]LoadFont complete.
+[0.210951][INFO][AssetManager]Now loading <music> from res\music.json
+[0.211869][INFO][AssetManager]LoadSound complete.
+[0.212592][INFO][AssetManager]LoadMusic complete.
+[0.214921][INFO][AssetManager]Loaded <desert_tile tex> from res/tex/planes/deserttile.png
+[0.21838][INFO][AssetManager]Loaded <water tex> from res/tex/planes/water.png
+[0.22009][INFO][AssetManager]Loaded <ammo-depot-strip tex> from res/tex/planes/ammo-depot-strip.png
+[0.221543][INFO][AssetManager]Loaded <spr_tower_strip8 tex> from res/tex/planes/spr_tower_strip8.png
+[0.222208][INFO][AssetManager]LoadTexture complete.
+[0.223709][INFO][AssetManager]First phase init complete, begin phase two...
+[0.225972][INFO][AssetManager]Starting LoadAnimation Thread
+[0.226527][INFO][AssetManager]Now loading <anim> from res\anim.json
+[0.227462][INFO][ANIM/ammo-strip]Begin loading animation <ammo-strip> from @res/spritesheet/ammo-strip.json
+[0.228264][INFO][AssetManager]Loading frame 0 for <ammo-strip>
+[0.235075][INFO][ANIM/ammo-strip]Trying to load texture <0,0>... pos:0
+[0.235772][INFO][AssetManager]        frame 0 for <ammo-strip>: 1
+[0.236364][INFO][AssetManager]Loading frame 1 for <ammo-strip>
+[0.243613][INFO][ANIM/ammo-strip]Trying to load texture <1,0>... pos:1
+[0.244247][INFO][AssetManager]        frame 1 for <ammo-strip>: 1
+[0.244852][INFO][AssetManager]Loading frame 2 for <ammo-strip>
+[0.251382][INFO][ANIM/ammo-strip]Trying to load texture <2,0>... pos:2
+[0.251937][INFO][AssetManager]        frame 2 for <ammo-strip>: 1
+[0.252455][INFO][AssetManager]Loading frame 3 for <ammo-strip>
+[0.259311][INFO][ANIM/ammo-strip]Trying to load texture <3,0>... pos:3
+[0.259968][INFO][AssetManager]        frame 3 for <ammo-strip>: 1
+[0.26056][INFO][AssetManager]Loading frame 4 for <ammo-strip>
+[0.266937][INFO][ANIM/ammo-strip]Trying to load texture <4,0>... pos:4
+[0.267587][INFO][AssetManager]        frame 4 for <ammo-strip>: 1
+[0.268155][INFO][AssetManager]Loading frame 5 for <ammo-strip>
+[0.274545][INFO][ANIM/ammo-strip]Trying to load texture <5,0>... pos:5
+[0.275297][INFO][AssetManager]        frame 5 for <ammo-strip>: 1
+[0.276028][INFO][AssetManager]Loaded <ammo-strip anim> from res/spritesheet/ammo-strip.json
+[0.276583][INFO][ANIM/tower-spin]Begin loading animation <tower-spin> from @res/spritesheet/tower-spin.json
+[0.277604][INFO][AssetManager]Loading frame 0 for <tower-spin>
+[0.28423][INFO][ANIM/tower-spin]Trying to load texture <0,0>... pos:0
+[0.284771][INFO][AssetManager]        frame 0 for <tower-spin>: 1
+[0.285313][INFO][AssetManager]Loading frame 1 for <tower-spin>
+[0.29231][INFO][ANIM/tower-spin]Trying to load texture <1,0>... pos:1
+[0.292937][INFO][AssetManager]        frame 1 for <tower-spin>: 1
+[0.29352][INFO][AssetManager]Loading frame 2 for <tower-spin>
+[0.300078][INFO][ANIM/tower-spin]Trying to load texture <2,0>... pos:2
+[0.300739][INFO][AssetManager]        frame 2 for <tower-spin>: 1
+[0.301331][INFO][AssetManager]Loading frame 3 for <tower-spin>
+[0.308217][INFO][ANIM/tower-spin]Trying to load texture <3,0>... pos:3
+[0.308816][INFO][AssetManager]        frame 3 for <tower-spin>: 1
+[0.309499][INFO][AssetManager]Loading frame 4 for <tower-spin>
+[0.316339][INFO][ANIM/tower-spin]Trying to load texture <4,0>... pos:4
+[0.316953][INFO][AssetManager]        frame 4 for <tower-spin>: 1
+[0.317628][INFO][AssetManager]Loading frame 5 for <tower-spin>
+[0.324423][INFO][ANIM/tower-spin]Trying to load texture <5,0>... pos:5
+[0.325097][INFO][AssetManager]        frame 5 for <tower-spin>: 1
+[0.325754][INFO][AssetManager]Loading frame 6 for <tower-spin>
+[0.332406][INFO][ANIM/tower-spin]Trying to load texture <6,0>... pos:6
+[0.333021][INFO][AssetManager]        frame 6 for <tower-spin>: 1
+[0.333594][INFO][AssetManager]Loading frame 7 for <tower-spin>
+[0.340862][INFO][ANIM/tower-spin]Trying to load texture <7,0>... pos:7
+[0.341708][INFO][AssetManager]        frame 7 for <tower-spin>: 1
+[0.343025][INFO][AssetManager]Loaded <tower-spin anim> from res/spritesheet/tower-spin.json
+[0.343785][INFO][AssetManager]LoadAnimation complete.
+[0.346745][INFO][GameContext]GLOBAL ASSET MANAGER INIT COMPLETE
+[0.347474][INFO][SceneManager]Initalising SceneManager...
+[0.348117][INFO][SceneManager]Initalisation complete.
+[0.348776][INFO][GameContext]GLOBAL SCENE MANAGER INIT COMPLETE
+[0.349452][INFO][SceneManager]Moving Scene! CURRENT: -1 & NEXT: 0
+[0.351728][INFO][SceneManager]Move complete successfully.
