@@ -23,8 +23,8 @@ namespace bb2d {
 
 			//Proper constructor for a functioning animation
 			Animation(Spritesheet* source, sf::Sprite* target, float fps){
-				sheet = source;
 				drawTarget = target;
+				sheet = source;
 				this->fps = fps;
 				internalTimer = sf::Clock();
 				init();
@@ -41,16 +41,21 @@ namespace bb2d {
 				return drawTarget;
 			}
 
-
+			//Standard method that progresses this animation basd on time per frame
 			const virtual void update() {
+				//Get current time of frame
 				auto thisFrame = internalTimer.getElapsedTime();
 				//std::cout << "[" << timePerFrame << "]" << "LAST: " << lastFrame.asSeconds() << '\t' << "THIS: " << thisFrame.asSeconds() << std::endl;
+				//If this frame is after last frame + timePerFrame, get next frame 
 				if (thisFrame.asSeconds() > lastFrame.asSeconds() + timePerFrame) {
 					try {
+						//Get next frame
 						doNextFrame();
+						//Set last frame to be this frame
 						lastFrame = thisFrame;
 					}
 					catch (std::exception e) {
+						//Notify of error
 						std::cout << "Error moving to the next Frame :" << e.what() << std::endl;
 					}
 				}
@@ -68,7 +73,7 @@ namespace bb2d {
 			}
 		protected:
 			const virtual void init() {
-				timePerFrame = (fps / sheet->getSheet()->size());
+				timePerFrame = (fps / sheet->getSheet()->size()) / fps;
 			}
 			//Go to next frame & set new next frame
 			

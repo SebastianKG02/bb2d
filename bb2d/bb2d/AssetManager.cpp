@@ -197,7 +197,9 @@ void AssetManager::loadAssetJSON(const std::string& type) {
 							//Send debug message
 							_logger->info(this, "Loading frame " + std::to_string(x + (y * anim[idString]->getSheetWidth())) + " for <" + idString + ">");
 							//Actually load the texture from the parent image <idString>
-							tex[frameID]->loadFromFile(anim[idString]->getAbsolutePath(), sf::IntRect(anim[idString]->getSheetWidth() * x, anim[idString]->getSheetHeight() * y, anim[idString]->getFrameWidth(), anim[idString]->getFrameHeight()));
+							tex[frameID]->loadFromFile(anim[idString]->getAbsolutePath(), sf::IntRect(anim[idString]->getFrameWidth() * x, anim[idString]->getFrameHeight() * y, anim[idString]->getFrameWidth(), anim[idString]->getFrameHeight()));
+							//Old (incorrect) slicing method
+							//tex[frameID]->loadFromFile(anim[idString]->getAbsolutePath(), sf::IntRect(anim[idString]->getSheetWidth() * x, anim[idString]->getSheetHeight() * y, anim[idString]->getFrameWidth(), anim[idString]->getFrameHeight()));
 							//anim[idString]->setFrame(x, y, tex[frameID]);
 							//Set actual animation frame to be created texture
 							_logger->info(this, "        frame " + std::to_string(x + (y * anim[idString]->getSheetWidth())) + " for <" + idString + ">: " + std::to_string(anim[idString]->setFrame(x, y, tex[frameID])));

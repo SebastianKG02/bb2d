@@ -149,7 +149,7 @@ SceneManager* GameContext::getSceneM() {
 }
 
 void GameContext::draw() {
-	window->clear();
+	window->clear(sf::Color::White);
 	m_scene->draw(window);
 	window->display();
 }

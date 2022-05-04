@@ -31,10 +31,11 @@ namespace bb2d {
 			//Load spritesheet <id> from <path>
 			Spritesheet(std::string id, std::string path, debug::Logger* logger) {
 				_logger = logger;
+				_logger->registerClass(this, "SPRS/" + id);
+				_logger->info(this, "Begin loading spritesheet <" + id + "> from @" + path);
 				origin = path;
 				//Register this spritesheet with the logger
-				_logger->registerClass(this, "ANIM/" + id);
-				_logger->info(this, "Begin loading animation <" + id + "> from @" + path);
+				sheetID = id;
 				loadSheetFromJSON(path);
 			}
 
@@ -148,19 +149,27 @@ namespace bb2d {
 
 			//Set frame <x,y> texture via pointer
 			const virtual bool setFrame(int x, int y, sf::Texture* newFrame) {
+				//Get internal frame ID
 				int _pos = getFrameID(x, y);
+				//Debug info
 				_logger->info(this, "Trying to load texture <" + std::to_string(x) + "," + std::to_string(y) + ">... pos:" + std::to_string(_pos));
 				try {
+					//If frame previously created, simply allocate new pointer
 					if (&sheet[_pos] != nullptr) {
+						//Allocate pointer to be new texture
 						sheet.at(_pos) = newFrame;
+						//Notify success
 						return true;
 					}
 					else {
+						//Create new entry at _pos, insert pointer to new frame texture 
 						sheet.insert({ _pos, newFrame });
+						//Notify success
 						return true;
 					}
 				}
 				catch (std::exception e) {
+					//If error, notify via Debug console and return of boolean false
 					_logger->error(this, "Can't set frame <" + std::to_string(x) + "," + std::to_string(y) + ">: " + e.what());
 					return false;
 				}
@@ -241,55 +250,76 @@ namespace bb2d {
 				return nextFrame;
 			}
 		
+			//Get pointer to parent texture
 			const virtual sf::Texture* getParentTexture() {
 				return parentTexture;
 			}
 
+			//Manually set this spritesheet's parent texture pointer -- DOES NOT RE-CREATE NEW FRAMES!!
 			const virtual void setParentTexture(sf::Texture* newParent) {
 				parentTexture = newParent;
 			}
 
+			//Manually set this spritesheet's parent texture string id -- DOES NOT DO ANYTHING ELSE!!
 			const virtual void setParentTextureID(std::string id) {
 				parentTextureID = id;
 			}
 
+			//Get parent texture string id
 			const virtual std::string getParentTextureID() {
 				return parentTextureID;
 			}
 
+			//Get absolute file path to this spritesheet
 			const virtual std::string getAbsolutePath() {
 				return absolutePath;
 			}
 
+			//Calculate & get next frame's internal ID & set to next frame internally
 			const virtual int getNextFrameID() {
 				//If current frame X less than Row Width, go in the +<direction.x>
-				frameIDs[0][0] = frameIDs[1][0];
-				frameIDs[0][1] = frameIDs[1][1];
 				if (frameIDs[1][0] < sheetSize->x && frameIDs[1][1] <= sheetSize->y) {
+					//Next frame [2][0] x is current frame [1][0] x + the increment found in direction vector
 					frameIDs[2][0] = frameIDs[1][0] + direction->x;
+					//Y remains unchanged
 					frameIDs[2][1] = frameIDs[1][1];
+				//If current frame X is exactly equal to Row Width, restart X counter & move up in +<direction.y>
 				}else if (frameIDs[1][0] == sheetSize->x && frameIDs[1][1] <= sheetSize->y) {
+					//Re-start x counter part [2][0] x to be same as when file was read in <startPos.x>
 					frameIDs[2][0] = startPos->x;
+					//Next frame [2][1] y is current frame [1][1] y + the increment found in direction vector
 					frameIDs[2][1] = frameIDs[1][1] + direction->y;
 				}
+				//IF (current frame X equal to Row Width AND current frame Y equal to Column Height)
+				//		OR
+				//	 (current frame	X equal to End Position X AND current frame Y equal to End Position Y)
+				//THEN restart whole sheet as per start vector
 				else if ((frameIDs[1][0] == sheetSize->x && frameIDs[1][1] == sheetSize->y) || (frameIDs[1][0] >= endPos->x && frameIDs[1][1] >= endPos->y)) {
+					//reset next [2] x & y to be same as when animation was loaded (loop)
 					frameIDs[2][0] = startPos->x;
 					frameIDs[2][1] = startPos->y;
 				}
 
+				//Get internal frame ID of next frame based on next frame x,y
 				auto result = getFrameID(frameIDs[2][0], frameIDs[2][1]);
 				
+				//Double-check that frame has been cleared if bigger than sheet size
 				if (result >= sheet.size()) {
+					//Clear next frame to be same as start position
 					frameIDs[2][0] = startPos->x;
 					frameIDs[2][1] = startPos->y;
+					//Return internal frame ID of next frame based on next frame x,y
 					return getFrameID(frameIDs[2][0], frameIDs[2][1]);
 				}
 				else {
+					//Return internal frame ID of next frame
 					return result;
 				}
 			}
 
+			//Get internal Integer frame ID for sub-texture[a,b]
 			int getFrameIntID(int a, int b) {
+				//Return sub-texture Inteher fame ID at [a,b]
 				return frameIDs[a][b];
 			}
 
@@ -305,41 +335,41 @@ namespace bb2d {
 				return sheet.at(getFrameID(frameIDs[2][0], frameIDs[2][1]));
 			}
 
-			/// <summary>
-			/// Update animation logic & frames
-			/// </summary>
-			/// <returns></returns>
+			//Update animation logic & frames
 			const virtual void update() {
 
 			}
 
-			// Get  current animation frame in realtime on the GPU
+			//Get current animation frame in realtime on the GPU
 			const virtual sf::Sprite* draw(sf::RenderWindow* w) {
 				return nullptr;
 			}
 
-			//Get act
+			//Get actual representation of this spritesheet on-screen
 			virtual sf::Sprite* getSprite() {
 				return nullptr;
 			}
 
+			//Get ID of next frame to be used for animation (and set it internally)
 			const virtual int next() {
+				//Swap "previous" frame [0] to be current frame [1]
 				frameIDs[0][0] = frameIDs[1][0];
 				frameIDs[0][1] = frameIDs[1][1];
+				//Swap "current" frame [1] to be next frame [2]
 				frameIDs[1][0] = frameIDs[2][0];
 				frameIDs[1][1] = frameIDs[2][1];
+				//Generate next frame ID with getNextFrameID()
 				auto result = getNextFrameID();
+				//Return result
 				return result;
 			}
 
-			const virtual int prev() {
-				return -1;
-			}
-
+			//Get pointer to actual map of texture pointers, keyed by internal int ID
 			std::map<int, sf::Texture*>* getSheet() {
 				return &sheet;
 			}
-			//Pointers to next lively frames
+
+			//Pointers to next likely frames
 			sf::Texture* previousFrame = nullptr, * currentFrame = nullptr, * nextFrame = nullptr;
 		protected:
 			//Simple recursive sheet deletion mechanism
@@ -364,10 +394,19 @@ namespace bb2d {
 			utils::JSONFile _file;
 			//Logger for debug purposes
 			debug::Logger* _logger;
-			//Actual sheet of sprites
+			//Actual sheet of textures loaded in, keyed by internal int ID
 			std::map<int, sf::Texture*> sheet = std::map<int, sf::Texture*>();
 
-			//Actual sheet IDs for each frame
+			//Actual sheet IDs for each frame, 2D array 3X2
+			//[0]Previous Frame
+			//[0][0]Previous Frame SheetX
+			//[0][1]Previous Frame SheetY
+			//[1]Current Frame
+			//[1][0]Current Frame SheetX
+			//[1][1]Current Frame SheetY
+			//[2]Next Frame
+			//[2][0]Next Frame SheetX
+			//[2][1]Next Frame SheetY
 			int frameIDs[3][2] = { {0, 0}, {0, 0}, {0, 0} };
 			//Actual texture that was sliced into this sheet
 			sf::Texture* parentTexture = nullptr;
@@ -385,6 +424,7 @@ namespace bb2d {
 			//		Size (width & height of sheet, in terms of columns & rows)
 			//		StartPos (first frame of animation)
 			//		EndPos (last frame of animation)
+			//		FranmeSize (size of each frame in px)
 			//		Direction (which way to go in loaded texture (X first then Y))
 			sf::Vector2i *sheetSize = new sf::Vector2i(0, 0), 
 						 *startPos = new sf::Vector2i(0, 0), 
