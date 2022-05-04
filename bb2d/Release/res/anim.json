@@ -1,0 +1,17 @@
+{
+    "bb2d": {
+        "type": "NONE",
+        "version": {
+            "major": 0,
+            "minor": 2
+        }
+    },
+    "data": {
+        "ammo-strip": "res/spritesheet/ammo-strip.json",
+        "list": [
+            "ammo-strip",
+            "tower-spin"
+        ],
+        "tower-spin": "res/spritesheet/tower-spin.json"
+    }
+}

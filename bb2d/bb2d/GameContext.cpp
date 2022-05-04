@@ -8,24 +8,35 @@ using namespace bb2d::debug;
 
 //Default constructor for GameContext - make new Token and Resolution
 GameContext::GameContext() {
+	timePerFrame = 1.0f / targetFPS;
+	timer = sf::Clock();
 	s_game->resolution = new Resolution(1920, 1080);
+	this->title = title;
 	window = new sf::RenderWindow(sf::VideoMode(s_game->resolution->X(), s_game->resolution->Y()), "BB2D " + getVersion());
 	_logger = new bb2d::debug::Logger();
 }
 
 GameContext::GameContext(int screenX, int screenY) {
+	timePerFrame = 1.0f / targetFPS;
+	timer = sf::Clock();
 	s_game->resolution = new Resolution(screenX, screenY);
+	this->title = title;
 	window = new sf::RenderWindow(sf::VideoMode(s_game->resolution->X(), s_game->resolution->Y()), "BB2D " + getVersion());
 	_logger = new bb2d::debug::Logger();
 }
 
 GameContext::GameContext(int screenX, int screenY, std::string title) {
 	s_game->resolution = new Resolution(screenX, screenY);
+	timer = sf::Clock();
+	timePerFrame = 1.0f / targetFPS;
+	this->title = title;
 	window = new sf::RenderWindow(sf::VideoMode(s_game->resolution->X(), s_game->resolution->Y()), title);
 	_logger = new bb2d::debug::Logger();
 }
 
 GameContext::GameContext(int screenX, int screenY, std::string title, std::string configPath, GameSettings* gs, debug::DebugSettings* ds) {
+	timePerFrame = 1.0f / targetFPS;
+	timer = sf::Clock();
 	if (gs == nullptr) {
 		s_game = new GameSettings();
 		s_game->resolution = new Resolution(screenX, screenY);
@@ -39,6 +50,7 @@ GameContext::GameContext(int screenX, int screenY, std::string title, std::strin
 		s_debug = new DebugSettings();
 	}
 	config = GConfigFile(configPath, gs);
+	this->title = title;
 	window = new sf::RenderWindow(sf::VideoMode(s_game->resolution->X(), s_game->resolution->Y()), title);
 	_logger = new bb2d::debug::Logger();
 }
@@ -119,7 +131,40 @@ void GameContext::init() {
 
 void GameContext::update() {
 	if (m_scene != nullptr) {
-		m_scene->update(window);
+		//Update global FPS (actual performance indicator, going as fast as possible)
+		//If timer reached lastGlobalFrame + 1 second or further
+		if (timer.getElapsedTime().asSeconds() >= lastGlobalFrame + 1.0f) {
+			//Update last global frame
+			lastGlobalFrame = timer.getElapsedTime().asSeconds();
+			//Update last global FPS value
+			lastGlobalFPS = ++currentGlobalFrames / 1.0f;
+			//Reset current global frame counter
+			currentGlobalFrames = 0;
+		}
+		else {
+			//If not, increase counter
+			currentGlobalFrames++;
+		}
+
+		//Logical (Fixed) Update logic (how fast the acutal game runs logically, the higher the "smoother" the experience"
+		if (timer.getElapsedTime().asSeconds() >= lastSecondFrame + 1.0f) {
+			//Update last fixed frame 
+			lastSecondFrame = timer.getElapsedTime().asSeconds();
+			//Update last fixed fps value
+			lastFPS = ++currentFrames / 1.0f;
+			//Reset current fixed frame counter
+			currentFrames = 0;
+			//If time ahead of last frame & delay, update game logic
+		}else if (timer.getElapsedTime().asSeconds() > lastFrame + timePerFrame) {
+			m_scene->update(window);
+			//Update last frame
+			lastFrame = timer.getElapsedTime().asSeconds();
+			//update current fixed frame counter
+			currentFrames++;
+		}
+
+		//Set FPS notification in title bar of BB2D window
+		window->setTitle(title + "[Logic FPS: " + std::to_string(lastFPS) + "][Global FPS: " + std::to_string(lastGlobalFPS) + "]");
 	}
 	else {
 		GLOBAL_BB2D_STATE = bb2ds::FAILURE;

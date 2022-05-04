@@ -1,0 +1,35 @@
+{
+    "bb2d": {
+        "type": "ASSET_SPR_SHEET",
+        "version": {
+            "major": 0,
+            "minor": 2
+        }
+    },
+	"data": {
+		"size": { 
+			"width": 8, 
+			"height": 1 
+		},
+		"start": {
+			"x": 0,
+			"y": 0
+		},
+		"end": {
+			"x": 7,
+			"y": 0
+		},
+		"frameSize": {
+			"width": 20,
+			"height": 35
+		},
+		"direction": {
+			"x": 1,
+			"y": 0
+		},
+		"texture": "spr_tower_strip8",
+		"absolutePath": "res/tex/planes/spr_tower_strip8.png",
+		"id": "tower-spin",
+		"fps": 60
+	}
+}

@@ -45,6 +45,17 @@ namespace bb2d {
 		sf::RenderWindow* window;
 		GConfigFile config;
 		GameSettings* s_game;
+		sf::Clock timer;
+		float lastFrame;
+		float lastSecondFrame;
+		float lastGlobalFrame;
+		float timePerFrame;
+		float targetFPS = 60.0f;
+		std::string title;
+		int currentFrames = 0;
+		int currentGlobalFrames = 0;
+		float lastFPS = 0.0f;
+		float lastGlobalFPS = 0.0f;
 		bb2d::debug::Logger *_logger;
 		debug::DebugSettings* s_debug;
 		AssetManager* m_asset;
