@@ -87,9 +87,10 @@ Scene::Scene() {
 	this->name = "";
 }
 
-void Scene::preInit(AssetManager* ref, GameSettings* settings) {
+void Scene::preInit(AssetManager* ref, GameSettings* settings, debug::Logger* log) {
 	this->ref_m_asset = ref;
 	this->_settings = settings;
+	this->logger = log;
 	this->init();
 }
 
@@ -121,12 +122,12 @@ void Scene::draw(sf::RenderWindow* w) {
 
 	//Draw UI elements
 	for (auto ui_e : ui) {
-		w->draw(*ui_e->getSprite());
+		ui_e->draw(w);
 #if DB_SHOW_HITBOXES == true
-		//Draw UIE hitbox
-		rect.setPosition(ui_e->getSprite()->getPosition());
-		rect.setSize(sf::Vector2f(ui_e->getSprite()->getGlobalBounds().width, ui_e->getSprite()->getGlobalBounds().height));
-		w->draw(rect);
+		//Draw UIE hitbox NO LONGER VALID!
+		//rect.setPosition(ui_e->getSprite()->getPosition());
+		//rect.setSize(sf::Vector2f(ui_e->getSprite()->getGlobalBounds().width, ui_e->getSprite()->getGlobalBounds().height));
+		//w->draw(rect);
 #endif
 	}
 
@@ -252,7 +253,7 @@ void SceneManager::next() {
 		}
 	}
 
-	getScene(currScene)->preInit(ref_m_asset, _settings);
+	getScene(currScene)->preInit(ref_m_asset, _settings, _logger);
 	getScene(currScene)->unlock();
 	_logger->info(this, "Move complete successfully.");
 }

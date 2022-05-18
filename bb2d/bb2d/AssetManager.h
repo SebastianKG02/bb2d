@@ -10,10 +10,12 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <algorithm>
+#include <exception>
 #include "ConfigFile.h"
 #include "JSONFile.h"
 #include "Logger.h"
 #include "Spritesheet.h"
+#include "AssetManager.h"
 
 namespace bb2d {      
 

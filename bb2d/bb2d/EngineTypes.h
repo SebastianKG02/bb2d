@@ -5,8 +5,8 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/Graphics/Color.hpp>
 
-#ifndef BB2D_ENGINE_TYPES
-#define BB2D_ENGINE_TYPES
+#ifndef BB2D_ENGINE_TYPES_H
+#define BB2D_ENGINE_TYPES_H
 
 namespace bb2d {
 

@@ -184,6 +184,7 @@ void AssetManager::loadAssetJSON(const std::string& type) {
 					if (fonts[idString]->loadFromFile(tempString) == false) {
 						fonts[idString] = nullptr;
 					}
+					break;
 				case 'a':
 					anim.insert({ std::string(idString), new core::Spritesheet(idString, tempString, _logger) });
 					//Set parent texture
@@ -350,25 +351,37 @@ void AssetManager::cleanup() {
 		//Loop through texture map and delete all loaded textures
 		tex.clear();
 
-		//Loop through music map and delete all loaded music
-		for (auto& res : music) {
-			delete res.second;
-		}
+		try {
+			//Loop through music map and delete all loaded music
+			for (auto& res : music) {
+				if (res.second != nullptr) {
+					delete res.second;
+				}
+			}
 
-		//Loop through font map and delete all loaded fonts
-		for (auto& res : fonts) {
-			delete res.second;
-		}
-		//Loop through sound map and delete all loaded sounds
-		for (auto& res : sound) {
-			delete res.second;
-		}
+			//Loop through font map and delete all loaded fonts
+			for (auto res : fonts) {
+				if (res.second != nullptr) {
+					//res.second->~Font();
+				}
+			}
+			//Loop through sound map and delete all loaded sounds
+			for (auto& res : sound) {
+				if (res.second != nullptr) {
+					delete res.second;
+				}
+			}
 
-		for (auto& asset : assets) {
-			asset.second->saveFile();
+			for (auto& asset : assets) {
+				if (asset.second != nullptr) {
+					asset.second->saveFile();
+				}
+			}
+			assets.clear();
 		}
-		assets.clear();
-
+		catch (std::exception e) {
+			_logger->error(this, "Could not cleanup!! " + *e.what());
+		}
 		//Set cleanup flag
 		hasFinishedCleanup == true;
 	}

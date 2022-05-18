@@ -1,3 +1,1 @@
-﻿  GameContext.cpp
-C:\Git\bb2d\bb2d\bb2d\Spritesheet.h(307,16): warning C4018: '>=': signed/unsigned mismatch
-  bb2d.vcxproj -> C:\Git\bb2d\bb2d\Release\bb2d.lib
+﻿  bb2d.vcxproj -> C:\Git\bb2d\bb2d\Release\bb2d.lib

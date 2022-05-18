@@ -1,10 +1,5 @@
 #include "DefaultScene.h"
 
-DefaultScene::DefaultScene() {
-	this->sceneID = 0;
-	this->name = "TESTING";
-}
-
 void DefaultScene::init() {
 	
 	/*
@@ -22,6 +17,11 @@ void DefaultScene::init() {
 	anims[1]->getSprite()->setScale(5.0f, 5.0f);
 	anims[1]->getSprite()->setPosition(325, 600);
 
+	//UI test!!
+	ui.push_back(new bb2d::ui::UIButton("DemoButton", ref_m_asset, this->logger, new std::string[4]{"button_active", "button_hover", "button_click", "button_lock"}));
+	ui[0]->centerSprite(ui[0]->getSpriteByName("DemoButton"));
+	ui[0]->addText("DemoButtonText", new sf::Text(std::string("AYO??"), *ref_m_asset->getFont("title")), true);
+	ui[0]->setPosition(bb2d::math::vec2(360, 200));
 	/*
 	int _last = 0;
 	for (int y = 0; y < resY / sprY; y++) {
@@ -43,6 +43,7 @@ void DefaultScene::init() {
 void DefaultScene::update(sf::RenderWindow* w) {
 	anims[0]->update();
 	anims[1]->update();
+	ui[0]->update(w);
 }
 
 void DefaultScene::input(sf::Event* e) {

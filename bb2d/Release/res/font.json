@@ -2,11 +2,14 @@
     "bb2d": {
         "type": "NONE",
         "version": {
-            "major": 0,
-            "minor": 2
+            "major": 1,
+            "minor": 0
         }
     },
     "data": {
-        "list": null
+        "list": [
+            "title"
+        ],
+        "title": "res/font/title.ttf"
     }
 }

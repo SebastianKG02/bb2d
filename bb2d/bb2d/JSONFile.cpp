@@ -24,7 +24,9 @@ bool JSONFile::loadFile(std::string path, bool makeIfNotFound) {
 	//If successfully open file
 	if (read.is_open()) {
 		//Dump all contents into _data
-		read >> _data;
+		if (read.good()) {
+			read >> _data;
+		}
 		//Close file
 		read.close();
 		//Notify success

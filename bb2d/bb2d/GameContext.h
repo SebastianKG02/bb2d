@@ -56,7 +56,7 @@ namespace bb2d {
 		int currentGlobalFrames = 0;
 		float lastFPS = 0.0f;
 		float lastGlobalFPS = 0.0f;
-		bb2d::debug::Logger *_logger;
+		debug::Logger *_logger;
 		debug::DebugSettings* s_debug;
 		AssetManager* m_asset;
 		SceneManager* m_scene;

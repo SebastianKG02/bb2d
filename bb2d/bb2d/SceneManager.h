@@ -21,11 +21,11 @@ namespace bb2d {
 	class Scene
 	{
 	public:
-		Scene(int id, std::string name, GameSettings* settings, debug::Logger* log);
+		Scene(int id, std::string name, GameSettings* settings, debug::Logger* log = nullptr);
 		Scene();  
 		virtual void init();
 		virtual void cleanup();
-		void preInit(AssetManager* ref, GameSettings* settings);
+		void preInit(AssetManager* ref, GameSettings* settings, debug::Logger* log);
 		virtual void draw(sf::RenderWindow* w);
 		virtual void update(sf::RenderWindow* w);
 		virtual void input(sf::Event* e);
