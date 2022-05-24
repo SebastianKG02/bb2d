@@ -14,9 +14,9 @@ Scene::Scene(int id, std::string name, GameSettings* settings, debug::Logger* lo
 	logger = log;
 	logger->registerClass(this, name);
 	logger->info(this, "Initalising scene...");
-	this->sceneID = id;
-	this->name = name;
-	this->active = false;
+	state.id = id;
+	state.name = name;
+	state.isActive = true;
 	sprites = std::vector<sf::Sprite*>();
 	sounds = std::vector<sf::Sound*>();
 	text = std::vector<sf::Text*>();
@@ -27,70 +27,79 @@ Scene::Scene(int id, std::string name, GameSettings* settings, debug::Logger* lo
 }
 
 void Scene::lock() {
-	if (active == true) {
-		active = false;
+	if (state.isActive == true) {
+		state.isActive = false;
 	}
 }
 
 void Scene::unlock() {
-	if (active == false) {
-		active = true;
+	if (state.isActive == false) {
+		state.isActive = true;
 	}
 }
 
+SceneData* Scene::getSceneData() {
+	return &state;
+}
+
 bool Scene::isActive() {
-	return active;
+	return state.isActive;
 }
 
 //Get localised name
 std::string Scene::getFriendlyName() {
-	return name;
+	return state.name;
 }
 
 //Simple cleanup method (deletes all maps, clears both ID vars)
 void Scene::cleanup() {
-	for (auto& sprite : sprites) {
-		delete sprite;
+	for (int i = 0; i < sprites.size(); i++) {
+		sprites.erase(sprites.begin() + i);
 	}
 
-	for (auto& textm : text) {
+	for (auto textm : text) {
 		delete textm;
 	}
 
-	for (auto& sound : sounds) {
+	for (auto sound : sounds) {
 		delete sound;
 	}
 
-	for (auto& anim : anims) {
+	for (auto anim : anims) {
 		delete anim;
 	}
 
-	for (auto& ui_e : ui) {
-		//ui_e->cleanup();
+	for (auto ui_e : ui) {
+		ui_e->cleanup();
 		delete ui_e;
 	}
 
 	if (ref_m_asset != nullptr) {
-		delete ref_m_asset;
+		ref_m_asset = nullptr;
 	}
 }
 
 //More destructive cleanup method
 void Scene::kill() {
 	cleanup();
-	name.clear();
-	this->sceneID = NULL;
+	state.name.clear();
+	state.id = NULL;
 }
 
 Scene::Scene() {
-	this->sceneID = NULL;
-	this->name = "";
+	state.id = NULL;
 }
 
 void Scene::preInit(AssetManager* ref, GameSettings* settings, debug::Logger* log) {
 	this->ref_m_asset = ref;
 	this->_settings = settings;
 	this->logger = log;
+	this->sprites = std::vector<sf::Sprite*>();
+	this->sounds = std::vector<sf::Sound*>();
+	this->text = std::vector <sf::Text*>();
+	this->ui = std::vector<ui::UIElement*>();
+	this->shapes = std::vector<sf::Shape*>();
+	this->anims = std::vector<core::Animation*>();
 	this->init();
 }
 
@@ -144,7 +153,9 @@ void Scene::draw(sf::RenderWindow* w) {
 
 	//Draw animations
 	for (auto anim : anims) {
-		w->draw(*anim->draw(w));
+		if (anim != nullptr) {
+			w->draw(*anim->draw(w));
+		}
 	}
 
 	//Draw any primitive shapes
@@ -159,12 +170,12 @@ void Scene::input(sf::Event* e) {
 
 //Simple get for scene's ID
 int Scene::getID() {
-	return sceneID;
+	return state.id;
 }
 
 //Set internal identifier (override)
 void Scene::setID(int id) {
-	this->sceneID = id;
+	state.id = id;
 }
 
 /*
@@ -230,9 +241,6 @@ Scene* SceneManager::getScene(int id) {
 //Switch to next scene
 void SceneManager::next() {
 	_logger->info(this, "Moving Scene! CURRENT: " + std::to_string(currScene) + " & NEXT: " + std::to_string(nextScene));
-	if (prevScene > -1 && (getScene(prevScene) != nullptr)) {
-		getScene(prevScene)->cleanup();
-	}
 
 	if (currScene > -1) {
 		getScene(currScene)->lock();
@@ -240,6 +248,11 @@ void SceneManager::next() {
 
 	prevScene = currScene;
 	currScene = nextScene;
+
+	if (prevScene > -1 && (getScene(prevScene) != nullptr)) {
+		_logger->info(this, "Cleaning up previous scene...");
+		getScene(prevScene)->cleanup();
+	}
 
 	for (;;) {
 		if (prevScene > -1 && getScene(prevScene)->isActive() == false) {
@@ -329,9 +342,18 @@ void SceneManager::input(sf::Event* e) {
 
 //Update current scene
 void SceneManager::update(sf::RenderWindow* w) {
-	//std::cout << currScene << std::endl;
-	//std::cout << scenes.at(currScene) << std::endl;
-	if (scenes.at(currScene)->isActive() == true) {
-		scenes.at(currScene)->update(w);
+	Scene* currentScene = scenes.at(currScene);
+
+	if (currentScene->isActive() == true) {
+		currentScene->update(w);
+	}
+	else {
+		if (currentScene->getSceneData()->exitOnClose) {
+			bb2d::GLOBAL_BB2D_STATE = BB2DSTATUS::CLEANUP_BEGIN;
+		}
+		else {
+			setNext(currentScene->getSceneData()->sceneOnClose);
+			next();
+		}
 	}
 }

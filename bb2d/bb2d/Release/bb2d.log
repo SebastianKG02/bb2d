@@ -1,1 +1,93 @@
-﻿  bb2d.vcxproj -> C:\Git\bb2d\bb2d\Release\bb2d.lib
+﻿  AssetManager.cpp
+C:\Git\bb2d\bb2d\bb2d\Spritesheet.h(307,16): warning C4018: '>=': signed/unsigned mismatch
+C:\Git\bb2d\bb2d\bb2d\AssetManager.cpp(386,22): warning C4553: '==': result of expression not used; did you intend '='?
+  ConfigFile.cpp
+C:\Git\bb2d\bb2d\bb2d\Utils.cpp(633,25): warning C4267: '=': conversion from 'size_t' to 'short', possible loss of data
+C:\Git\bb2d\bb2d\bb2d\Utils.cpp(635,20): warning C4267: '=': conversion from 'size_t' to 'short', possible loss of data
+  EngineTypes.cpp
+  GameContext.cpp
+C:\Git\bb2d\bb2d\bb2d\Spritesheet.h(307,16): warning C4018: '>=': signed/unsigned mismatch
+C:\Git\bb2d\bb2d\bb2d\vec.h(64,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Git\bb2d\bb2d\bb2d\vec.h(65,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Git\bb2d\bb2d\bb2d\vec.h(191,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Git\bb2d\bb2d\bb2d\vec.h(192,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Git\bb2d\bb2d\bb2d\vec.h(193,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Git\bb2d\bb2d\bb2d\UITypes.h(86,23): warning C4018: '<': signed/unsigned mismatch
+C:\Git\bb2d\bb2d\bb2d\UITypes.h(85): message : while compiling class template member function 'bb2d::ui::UIComposite<sf::Shape>::~UIComposite(void)'
+C:\Git\bb2d\bb2d\bb2d\UITypes.h(94): message : see reference to function template instantiation 'bb2d::ui::UIComposite<sf::Shape>::~UIComposite(void)' being compiled
+C:\Git\bb2d\bb2d\bb2d\UITypes.h(113): message : see reference to class template instantiation 'bb2d::ui::UIComposite<sf::Shape>' being compiled
+  JSONFile.cpp
+  Resolution.cpp
+C:\Git\bb2d\bb2d\bb2d\Resolution.cpp(18,36): warning C4267: 'initializing': conversion from 'size_t' to 'short', possible loss of data
+C:\Git\bb2d\bb2d\bb2d\Resolution.cpp(19,33): warning C4267: 'initializing': conversion from 'size_t' to 'short', possible loss of data
+  SceneManager.cpp
+C:\Git\bb2d\bb2d\bb2d\Spritesheet.h(307,16): warning C4018: '>=': signed/unsigned mismatch
+C:\Git\bb2d\bb2d\bb2d\vec.h(64,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Git\bb2d\bb2d\bb2d\vec.h(65,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Git\bb2d\bb2d\bb2d\vec.h(191,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Git\bb2d\bb2d\bb2d\vec.h(192,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Git\bb2d\bb2d\bb2d\vec.h(193,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Git\bb2d\bb2d\bb2d\UITypes.h(86,23): warning C4018: '<': signed/unsigned mismatch
+C:\Git\bb2d\bb2d\bb2d\UITypes.h(85): message : while compiling class template member function 'bb2d::ui::UIComposite<sf::Shape>::~UIComposite(void)'
+C:\Git\bb2d\bb2d\bb2d\UITypes.h(94): message : see reference to function template instantiation 'bb2d::ui::UIComposite<sf::Shape>::~UIComposite(void)' being compiled
+C:\Git\bb2d\bb2d\bb2d\UITypes.h(113): message : see reference to class template instantiation 'bb2d::ui::UIComposite<sf::Shape>' being compiled
+  UIButton.cpp
+C:\Git\bb2d\bb2d\bb2d\Spritesheet.h(307,16): warning C4018: '>=': signed/unsigned mismatch
+C:\Git\bb2d\bb2d\bb2d\vec.h(64,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Git\bb2d\bb2d\bb2d\vec.h(65,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Git\bb2d\bb2d\bb2d\vec.h(191,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Git\bb2d\bb2d\bb2d\vec.h(192,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Git\bb2d\bb2d\bb2d\vec.h(193,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Git\bb2d\bb2d\bb2d\UIButton.cpp(9,33): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Git\bb2d\bb2d\bb2d\UIButton.cpp(10,33): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Git\bb2d\bb2d\bb2d\UIButton.cpp(11,33): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Git\bb2d\bb2d\bb2d\UIButton.cpp(12,33): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Git\bb2d\bb2d\bb2d\UIButton.cpp(15,16): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=int
+          ]
+C:\Git\bb2d\bb2d\bb2d\UIButton.cpp(16,16): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=int
+          ]
+C:\Git\bb2d\bb2d\bb2d\UITypes.h(86,23): warning C4018: '<': signed/unsigned mismatch
+C:\Git\bb2d\bb2d\bb2d\UITypes.h(85): message : while compiling class template member function 'bb2d::ui::UIComposite<sf::Shape>::~UIComposite(void)'
+C:\Git\bb2d\bb2d\bb2d\UITypes.h(94): message : see reference to function template instantiation 'bb2d::ui::UIComposite<sf::Shape>::~UIComposite(void)' being compiled
+C:\Git\bb2d\bb2d\bb2d\UITypes.h(113): message : see reference to class template instantiation 'bb2d::ui::UIComposite<sf::Shape>' being compiled
+  UIElement.cpp
+C:\Git\bb2d\bb2d\bb2d\Spritesheet.h(307,16): warning C4018: '>=': signed/unsigned mismatch
+C:\Git\bb2d\bb2d\bb2d\vec.h(64,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Git\bb2d\bb2d\bb2d\vec.h(65,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Git\bb2d\bb2d\bb2d\vec.h(191,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Git\bb2d\bb2d\bb2d\vec.h(192,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Git\bb2d\bb2d\bb2d\vec.h(193,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Git\bb2d\bb2d\bb2d\UIElement.cpp(74,14): warning C4834: discarding return value of function with 'nodiscard' attribute
+C:\Git\bb2d\bb2d\bb2d\UIElement.cpp(488,16): warning C4018: '<': signed/unsigned mismatch
+C:\Git\bb2d\bb2d\bb2d\UIElement.cpp(494,16): warning C4018: '<': signed/unsigned mismatch
+C:\Git\bb2d\bb2d\bb2d\UIElement.cpp(500,16): warning C4018: '<': signed/unsigned mismatch
+C:\Git\bb2d\bb2d\bb2d\UITypes.h(86,23): warning C4018: '<': signed/unsigned mismatch
+C:\Git\bb2d\bb2d\bb2d\UITypes.h(85): message : while compiling class template member function 'bb2d::ui::UIComposite<sf::Shape>::~UIComposite(void)'
+C:\Git\bb2d\bb2d\bb2d\UITypes.h(94): message : see reference to function template instantiation 'bb2d::ui::UIComposite<sf::Shape>::~UIComposite(void)' being compiled
+C:\Git\bb2d\bb2d\bb2d\UITypes.h(113): message : see reference to class template instantiation 'bb2d::ui::UIComposite<sf::Shape>' being compiled
+  Utils.cpp
+C:\Git\bb2d\bb2d\bb2d\Utils.cpp(633,25): warning C4267: '=': conversion from 'size_t' to 'short', possible loss of data
+C:\Git\bb2d\bb2d\bb2d\Utils.cpp(635,20): warning C4267: '=': conversion from 'size_t' to 'short', possible loss of data
+  bb2d.vcxproj -> C:\Git\bb2d\bb2d\Release\bb2d.lib

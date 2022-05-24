@@ -31,9 +31,14 @@ namespace bb2d {
 			}
 
 			//Get representation of the current sprite & draw it to the screen
-			const virtual sf::Sprite* draw(sf::RenderWindow* w) {
-				w->draw(*drawTarget);
-				return drawTarget;
+			virtual sf::Sprite* draw(sf::RenderWindow* w) {
+				if (drawTarget != nullptr) {
+					w->draw(*drawTarget);
+					return drawTarget;
+				}
+				else {
+					return nullptr;
+				}
 			}
 
 			//Get reference to current sprite being used as the canvas

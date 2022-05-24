@@ -78,7 +78,7 @@ void UIElement::cleanup() {
 UIElement::~UIElement() {
 	cleanup();
 	element->~UICluster();
-	delete& states;
+	states.empty();
 	ref_m_asset = nullptr;
 }
 
@@ -159,6 +159,7 @@ void UIElement::pause(float time) {
 		internalClock.restart();
 		//Launch unlock control thread
 		std::thread pauseThread(&UIElement::countdownTimer, this, time);
+		pauseThread.join();
 	}
 }
 
@@ -166,22 +167,10 @@ void UIElement::pause(float time) {
 //**INTENDED TO BE USED WITHIN A THREAD!!**
 //Will unlock infinte loop as soon as counter+time time is reached
 void UIElement::countdownTimer(float time) {
-	do{
-		//Get time, if more than/equal to counter+time, unlock & break loop
-		if ((internalClock.getElapsedTime().asSeconds() >= (counter + time))) {
-			unlock();
-			paused = false;
-			break;
-		}
-	} while (internalClock.getElapsedTime().asSeconds() <= (counter + time));
+	std::this_thread::sleep_for(std::chrono::milliseconds((int)(time*1000)));
+	unlock();
+	paused = false;
 
-	//Just in case time is weirded out, check one last time if unlock condition needs to be set
-	if (paused) {
-		if ((internalClock.getElapsedTime().asSeconds() >= (counter + time))) {
-			unlock();
-			paused = false;
-		}
-	}
 }
 
 //Setter for activity state
@@ -364,28 +353,46 @@ void UIElement::centerComponent(const std::string& name, UIObject type) {
 //Method to center
 void UIElement::centerComponent(void* obj, UIObject type) {
 	try {
+		float element_width = 0.0f;
+		float element_height = 0.0f;
+		sf::Vector2f origin;
 		switch (type) {
 		case UIObject::SPR:
 			//Cast passed pointer
 			sf::Sprite* spr_ptr;
 			spr_ptr = (sf::Sprite*)obj;
+			element_width = spr_ptr->getGlobalBounds().width / 2;
+			element_height = spr_ptr->getGlobalBounds().height / 2;
+			origin = spr_ptr->getOrigin();
 			//If pointer found, set origin based on HALF width and HALF weight
 			if (spr_ptr != nullptr) {
-				spr_ptr->setOrigin(spr_ptr->getGlobalBounds().width / 2, spr_ptr->getGlobalBounds().height / 2);
+				if ((origin.x != element_width) && (origin.y != element_height)) {
+					spr_ptr->setOrigin(spr_ptr->getGlobalBounds().width / 2, spr_ptr->getGlobalBounds().height / 2);
+				}
 			}
 			break;
 		case UIObject::TXT:
 			sf::Text* txt_ptr;
 			txt_ptr = (sf::Text*)obj;
+			element_width = txt_ptr->getGlobalBounds().width / 2;
+			element_height = txt_ptr->getGlobalBounds().height / 2;
+			origin = txt_ptr->getOrigin();
 			if (txt_ptr != nullptr) {
-				txt_ptr->setOrigin(txt_ptr->getGlobalBounds().width / 2, txt_ptr->getGlobalBounds().height / 2);
+				if ((origin.x != element_width) && (origin.y != element_height)) {
+					txt_ptr->setOrigin(txt_ptr->getGlobalBounds().width / 2, txt_ptr->getGlobalBounds().height / 2);
+				}
 			}
 			break;
 		case UIObject::SHP:
 			sf::Shape* shp_ptr;
 			shp_ptr = (sf::Shape*)obj;
+			element_width = shp_ptr->getGlobalBounds().width / 2;
+			element_height = shp_ptr->getGlobalBounds().height / 2;
+			origin = shp_ptr->getOrigin();
 			if (shp_ptr != nullptr) {
-				shp_ptr->setOrigin(shp_ptr->getGlobalBounds().width / 2, shp_ptr->getGlobalBounds().height / 2);
+				if ((origin.x != element_width) && (origin.y != element_height)) {
+					shp_ptr->setOrigin(shp_ptr->getGlobalBounds().width / 2, shp_ptr->getGlobalBounds().height / 2);
+				}
 			}
 			break;
 		}

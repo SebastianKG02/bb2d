@@ -1,0 +1,16 @@
+{
+    "bb2d": {
+        "type": "M_ASSET_MAIN",
+        "version": {
+            "major": 1,
+            "minor": 0
+        }
+    },
+    "data": {
+        "anim": "res\\anim.json",
+        "font": "res\\font.json",
+        "music": "res\\music.json",
+        "sound": "res\\sound.json",
+        "tex": "res\\tex.json"
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "bb2d": {
+        "type": "NONE",
+        "version": {
+            "major": 1,
+            "minor": 0
+        }
+    },
+    "data": {
+        "ammo-depot-strip": "res/tex/planes/ammo-depot-strip.png",
+        "button_active": "res/tex/tmp/button_active.png",
+        "button_click": "res/tex/tmp/button_click.png",
+        "button_hover": "res/tex/tmp/button_hover.png",
+        "button_lock": "res/tex/tmp/button_lock.png",
+        "desert_tile": "res/tex/planes/deserttile.png",
+        "list": [
+            "desert_tile",
+            "water",
+            "ammo-depot-strip",
+            "spr_tower_strip8",
+            "button_active",
+            "button_click",
+            "button_hover",
+            "button_lock"
+        ],
+        "spr_tower_strip8": "res/tex/planes/spr_tower_strip8.png",
+        "water": "res/tex/planes/water.png"
+    }
+}

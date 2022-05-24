@@ -19,7 +19,7 @@ int main() {
 	while (my_game.getWindow()->isOpen()) {
 		my_game.input();
 		my_game.update();
-		my_game.draw();
+		my_game.draw(sf::Color::White);
 	}
 	//my_game.~GameContext();
 }

@@ -1,0 +1,5 @@
+﻿  DefaultScene.cpp
+C:\Git\bb2d\bb2d\bb2dDemo\DefaultScene.h(5,10): fatal error C1083: Cannot open include file: 'SceneManager.h': No such file or directory
+  main.cpp
+C:\Git\bb2d\bb2d\bb2dDemo\main.cpp(2,10): fatal error C1083: Cannot open include file: 'JSONFile.cpp': No such file or directory
+  Generating Code...

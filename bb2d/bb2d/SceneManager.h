@@ -15,6 +15,19 @@
 #include "Animation.h"
 
 namespace bb2d {
+
+	/*
+	Controls Scene Behaviour 
+	*/
+	struct SceneData
+	{
+		int id = 0;
+		std::string name = "N/A";
+		bool exitOnClose = false;
+		int sceneOnClose = 0;
+		bool isActive = false;
+	};
+
 	/*
 	The Scene class is a template class for all future scenes to be loaded in the SceneManager
 	*/
@@ -36,6 +49,7 @@ namespace bb2d {
 		int getID();
 		void setID(int id);
 		void kill();
+		SceneData* getSceneData();
 	protected:
 		std::vector<sf::Sprite*> sprites;
 		std::vector<sf::Sound*> sounds;
@@ -46,9 +60,7 @@ namespace bb2d {
 		GameSettings* _settings;
 		debug::Logger* logger;
 		AssetManager* ref_m_asset;
-		int sceneID;
-		bool active = false;
-		std::string name;
+		SceneData state;
 	};
 
 	/*

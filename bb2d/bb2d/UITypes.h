@@ -83,9 +83,10 @@ namespace bb2d {
 
 			//Default destructor loops through vector and deletes sprites, clears idref
 			~UIComposite() {
+				/*
 				for (int i = 0; i < data->size(); i++) {
 					delete data->at(i);
-				}
+				}*/
 				delete data;
 
 				//Clear reference array
@@ -117,13 +118,10 @@ namespace bb2d {
 			~UICluster() {
 				//Loop through each vector, delete elements as needed and then delete the vector itself
 				spr->~UIComposite();
-				delete spr;
 
 				txt->~UIComposite();
-				delete txt;
 
 				shp->~UIComposite();
-				delete shp;
 			}
 		};
 

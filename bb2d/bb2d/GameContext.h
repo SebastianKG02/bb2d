@@ -29,7 +29,7 @@ namespace bb2d {
 		//Polls update
 		virtual void input();
 		//Draws current scene in SceneManager in window
-		virtual void draw();
+		virtual void draw(sf::Color clearColor);
 		sf::RenderWindow* getWindow();
 		//Custom resolution input constructor
 		GameContext(int screenX, int screenY);
@@ -41,6 +41,7 @@ namespace bb2d {
 		debug::DebugSettings* getDebugOptions();
 		AssetManager* getAssetM();
 		SceneManager* getSceneM();
+		debug::Logger* getLocalLogger();
 	protected:
 		sf::RenderWindow* window;
 		GConfigFile config;
@@ -50,6 +51,11 @@ namespace bb2d {
 		float lastSecondFrame;
 		float lastGlobalFrame;
 		float timePerFrame;
+		float run_lowestFrame;
+		float run_highestFrame;
+		float min_averageFrame;
+		float min_lastAverageFrame;
+		float min_lastSampleTime;
 		float targetFPS = 60.0f;
 		std::string title;
 		int currentFrames = 0;

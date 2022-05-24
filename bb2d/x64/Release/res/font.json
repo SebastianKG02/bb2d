@@ -1,0 +1,15 @@
+{
+    "bb2d": {
+        "type": "NONE",
+        "version": {
+            "major": 1,
+            "minor": 0
+        }
+    },
+    "data": {
+        "list": [
+            "title"
+        ],
+        "title": "res/font/title.ttf"
+    }
+}

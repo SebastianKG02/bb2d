@@ -5,7 +5,6 @@
 
 #include <string>
 #include <json.hpp>
-#include <version>
 #include "EngineSettings.h"
 
 //Define number of spaces to indent JSON
